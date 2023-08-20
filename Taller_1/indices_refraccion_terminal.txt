@@ -1,5 +1,5 @@
 Punto 1.1: awk -F "," 'NR>1  {print $3}' indices_refraccion.csv > materiales.txt
-Punto 1.2: 
+Punto 1.2: Revisar si lo podemos hacer con python o solo con Bash
 
 Para crear carpetas mkdir "Nombre"
 Para guardar archivos en una carpeta cd "Nombre Carpeta"/
