@@ -1,2 +1,5 @@
-Punto 1.1: awk -F "," 'NR>1  {print $1}' indices_refraccion.csv > materiales.txt
+Punto 1.1: awk -F "," 'NR>1  {print $3}' indices_refraccion.csv > materiales.txt
 Punto 1.2: 
+
+Para crear carpetas mkdir "Nombre"
+Para guardar archivos en una carpeta cd "Nombre Carpeta"/
