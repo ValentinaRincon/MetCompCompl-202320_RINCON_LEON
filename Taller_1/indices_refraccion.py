@@ -17,10 +17,8 @@ import os
 
 #Punto 1.3
 
-def recibir_informacion_yml()-> list:
-    
-    archivo_yml=input("Introduzca la ruta del archivo que quiere hallar de acuerdo con la ruta implementada en las carpetas de cada material- (Ejemplo: Taller_1/Plásticos_Comerciales/kapton.yml): ")
-    
+def recibir_informacion_yml(ruta_archivo)-> list:
+     
     #ruta = dar_titulo(archivo_yml)
     #Cargar archivo
     
@@ -75,7 +73,7 @@ def graficar_indice_vs_longitud():
         
     #Nombre ejes
         
-    plt.title("Gráfica de NOA1348\n" "el n promedio es: " + str(promedio) + "\n y su desviación estándar es: " + str(desviación))
+    plt.title("Gráfica de NOA1348\n" "el n promedio es:{0} \n y su desviación estándar es:{1}").format(promedio,desviación)
     plt.xlabel("Longitud de onda")
     plt.ylabel("Índice de refracción") 
     
