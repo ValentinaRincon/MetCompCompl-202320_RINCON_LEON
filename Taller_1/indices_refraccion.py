@@ -51,6 +51,26 @@ def recibir_informacion_yml(ruta_archivo)-> list:
 
 #Punto 1.4
 
+def auxiliar_categoria(ubicacion_archivo):
+    
+    #Leer los archivos
+    with open('indices_refraccion.csv', 'r', newline='') as archivo_csv:
+    # Crea un lector CSV
+        lector = csv.reader(archivo_csv, delimiter='\t')  # Ajusta el delimitador según tu archivo CSV
+
+    # Inicializa una variable booleana para rastrear si es el primer ciclo
+        primer_ciclo = True
+
+    # Itera a través de las filas y descarga los archivos .yml
+        for fila in lector:
+            if primer_ciclo:
+                primer_ciclo = False
+                continue  # Omitir el primer ciclo
+
+            categoria = fila[0].split(',')[0]
+        
+    return categoria
+
 def graficar_indice_vs_longitud():
     
     archivo = recibir_informacion_yml()
@@ -70,21 +90,29 @@ def graficar_indice_vs_longitud():
     #Gráfico de dispersión
         
     plt.plot(eje_x,eje_y)
-        
+    
+    #Obtención del título de la categoría
+    categoria = auxiliar_categoria()
     #Nombre ejes
         
-    plt.title("Gráfica de NOA1348\n" "el n promedio es:{0} \n y su desviación estándar es:{1}").format(promedio,desviación)
+    plt.title("Gráfica de {0}\n" "el n promedio es:{1} \n y su desviación estándar es:{2}").format(categoria,promedio,desviación)
     plt.xlabel("Longitud de onda")
     plt.ylabel("Índice de refracción") 
     
 #Revisar ciclo que mande a cada imagen de acuerdo a su carpeta
-    carpeta_guardar = "Taller_1/Adhesivos_Ópticos"
-    os.makedirs(carpeta_guardar, exist_ok=True)
-    
-    ruta_guardar = os.path.join(carpeta_guardar, "NOA1348.png")
-    plt.savefig(ruta_guardar)
+
+    if categoria == "NOA1348.yml":
+        carpeta_guardar = "Taller_1/Adhesivos_Ópticos"
+        os.makedirs(carpeta_guardar, exist_ok=True)
+        ruta_guardar = os.path.join(carpeta_guardar, "NOA1348.png")
+        plt.savefig(ruta_guardar)
         
-    plt.savefig(ruta_guardar)
+    else:
+        carpeta_guardar = "Taller_1/Plásticos_Comerciales"
+        os.makedirs(carpeta_guardar, exist_ok=True)
+        ruta_guardar = os.path.join(carpeta_guardar, "Kapton.png")
+        plt.savefig(ruta_guardar)
+
     plt.show()
         
 #archivo_1 = Taller_1/Plásticos_Comerciales/Kapton.png
