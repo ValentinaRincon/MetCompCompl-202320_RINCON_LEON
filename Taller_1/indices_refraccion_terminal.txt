@@ -1,5 +1,14 @@
 Punto 1.1: awk -F "," 'NR>1  {print $3}' indices_refraccion.csv > materiales.txt
-Punto 1.2: Revisar si lo podemos hacer con python o solo con Bash
+Punto 1.2: 
+input="indices_refraccion.csv"
+while IFS=, read -r categoria _ nombre link; do
+    if [ "$categoria" == "Categoria" ]; then
+        continue
+    fi
+    mkdir -p "Descargas/$categoria"
+    encoded_link=$(echo "$link" | sed 's/ /%20/g')
+    curl -L "$encoded_link" -o "Descargas/$categoria/$nombre.yml"
+done < "$input"
 
-Para crear carpetas mkdir "Nombre"
-Para guardar archivos en una carpeta cd "Nombre Carpeta"/
+
+
