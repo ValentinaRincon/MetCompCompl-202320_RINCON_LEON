@@ -41,7 +41,7 @@ def recibir_informacion_yml(ruta_archivo)-> list:
                     par = valor.split()
                     
                     if len(par) == 2:
-                        pares = (float(par[1]), float(par[0]))
+                        pares = (float(par[0]), float(par[1]))
                         parejas.append(pares)
     return  parejas
 
