@@ -93,7 +93,7 @@ def graficar_indice_vs_longitud():
     plt.plot(eje_x,eje_y)
     
     #Obtención del título de la categoría
-    categoria = auxiliar_categoria()
+    categoria = auxiliar_categoria() #Falta planear esta función auxiliar
     #Nombre ejes
         
     plt.title("Gráfica de {0}\n" "el n promedio es:{1} \n y su desviación estándar es:{2}").format(categoria,promedio,desviación)

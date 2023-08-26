@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 #Punto 2.1
 
 class Mineral:
@@ -22,4 +24,29 @@ class Mineral:
         print(f"Sistema_Cristalino: {self.cristalino}")
         print(f"Specific_gravity: {self.specific_gravity}")
         
-#Falta el punto 2.2
+#Punto 2.2
+
+    def silicato(self): 
+        si = "Si"
+        o = "O"
+        return si in self.composición and o in self.composición
+    
+    def densidad(self):
+        densidad_agua = 1000
+        return self.specific_gravity * densidad_agua
+    
+    def color_comun(self):
+        
+        colores = self.color
+        mineral = self.nombre
+        
+        plt.bar(mineral, [1] * len(mineral), color=colores)
+        plt.show()
+            
+    def caracteristicas(self):
+        rompimiento =  "Escision"
+        if self.rompimiento_por_fractura is True:
+            rompimiento = "Fractura"
+        print("{0},{1}.{2}").format(self.dureza,rompimiento,self.sistema_cristalino)
+        
+        
