@@ -87,10 +87,9 @@ def graficar_indice_vs_longitud(ruta:str):
     plt.xlabel("Longitud de onda")
     plt.ylabel("Índice de refracción") 
 
-    
 #Revisar ciclo que mande a cada imagen de acuerdo a su carpeta
 
-    if categoria == "NOA1348.yml":
+    if categoria == "NOA1348":
         carpeta_guardar = "Taller_1/Descargas 1-2/Adhesivos Ópticos"
         os.makedirs(carpeta_guardar, exist_ok=True)
         ruta_guardar = os.path.join(carpeta_guardar, "NOA1348.png")
@@ -101,19 +100,19 @@ def graficar_indice_vs_longitud(ruta:str):
         os.makedirs(carpeta_guardar, exist_ok=True)
         ruta_guardar = os.path.join(carpeta_guardar, "Kapton.png")
         plt.savefig(ruta_guardar)
-        
+    
     plt.show()
-
+        
 
 
 lista_archivos = ["Taller_1/Descargas 1-2/Plásticos Comerciales/Kapton.yml", "Taller_1/Descargas 1-2/Adhesivos Ópticos/NOA1348.yml"]
+
+
 for elemento in lista_archivos:
     
     grafica = graficar_indice_vs_longitud(elemento)
     
-    print(grafica) 
-    
-
+    print()
 
 #Punto 1.5
 
