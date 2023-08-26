@@ -1,9 +1,14 @@
-import numpy as np 
+import numpy as np
+import json 
+
 from mineral import Mineral
+
 lista= []
 f = open("Taller_1/minerales.txt","r", encoding="utf-8")
+#with open('Taller_1/minerales.txt', 'r') as file:
 file = f.readlines()
 for linea in file[1:17]:
+    
     atributos = linea.strip().split("\t")
     nombre = atributos[0]
     dureza = atributos[1]
@@ -14,20 +19,24 @@ for linea in file[1:17]:
     specific_gravity = atributos[6]
     sistema_cristalino = atributos[7]
         
-    mineral_i = Mineral(nombre,dureza,rompimiento_por_fractura,color,composicion,lustre,specific_gravity,sistema_cristalino)
+    mineral_i = Mineral(nombre,dureza,lustre,rompimiento_por_fractura,color,composicion,specific_gravity,sistema_cristalino)
         
     lista.append(mineral_i)
     
+#Mineral.leer(lista[1])
+#print(Mineral.densidad(lista[1]))
+
 def contar_silicatos():
+    
+    contador = 0
 
     for mineral in lista:
-        print(mineral)
-        contador = 0
 
-        if mineral.silicato() is True:
+        if mineral.silicato():
 
             contador +=1
 
     return contador
 print(contar_silicatos())
+
 

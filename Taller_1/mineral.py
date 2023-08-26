@@ -13,27 +13,28 @@ class Mineral:
         self.composición = composición
         self.specific_gravity = specific_gravity
         self.sistema_cristalino = sistema_cristalino
-        
-    def leer(self):
-        print(f"Nombre: {'self.nombre'}")
-        print(f"Dureza: {'self.dureza'}")
-        print(f"Lustre: {'self.lustre'}")
-        print(f"Rompimiento_por_fractura: {'VERDADERO' if self.rompimiento_por_fractura else 'FALSO'}")
-        print(f"Color: {self.color}")
-        print(f"Composición: {self.composición}")
-        print(f"Sistema_Cristalino: {self.cristalino}")
-        print(f"Specific_gravity: {self.specific_gravity}")
-        
+
+    def __str__(self):
+        return f"Mineral: {self.nombre}\n" \
+            f"Dureza: {self.dureza}\n" \
+            f"Rompimiento por Fractura: {'VERDADERO' if self.rompimiento_por_fractura else 'FALSO'}\n" \
+            f"Color: {self.color}\n" \
+            f"Composición: {self.composición}\n" \
+            f"Lustre: {self.lustre}\n" \
+            f"Gravedad Específica: {self.specific_gravity}\n" \
+            f"Sistema Cristalino: {self.sistema_cristalino}\n"
+
 #Punto 2.2
 
     def silicato(self): 
         si = "Si"
-        o = "O"
-        return si in self.composición and o in self.composición
+        ox = "O"
+        
+        return si in self.composición and ox in self.composición
     
     def densidad(self):
         densidad_agua = 1000
-        return self.specific_gravity * densidad_agua
+        return float(self.specific_gravity) * densidad_agua
     
     def color_comun(self):
         
@@ -49,7 +50,3 @@ class Mineral:
         if tipo.title() is True:
             rompimiento = "Fractura"
         print("{0},{1}.{2}").format(self.dureza,rompimiento,self.sistema_cristalino)
-        
-
-        
-        
