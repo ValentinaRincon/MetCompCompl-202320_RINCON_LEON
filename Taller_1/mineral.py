@@ -45,7 +45,8 @@ class Mineral:
             
     def caracteristicas(self):
         rompimiento =  "Escision"
-        if self.rompimiento_por_fractura is True:
+        tipo = self.rompimiento_por_fractura
+        if tipo.title() is True:
             rompimiento = "Fractura"
         print("{0},{1}.{2}").format(self.dureza,rompimiento,self.sistema_cristalino)
         
