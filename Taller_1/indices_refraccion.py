@@ -17,12 +17,11 @@ import os
 
 #Punto 1.3
 
-def recibir_informacion_yml(ruta_archivo)-> list:
+def recibir_informacion_yml(archivo_yml)-> list:
      
     #ruta = dar_titulo(archivo_yml)
     #Cargar archivo
-    
-    with open(archivo_yml, 'r') as yml_file:
+    with open(archivo_yml,'r') as yml_file:
         
         dato = yaml.safe_load(yml_file)
         
@@ -41,11 +40,13 @@ def recibir_informacion_yml(ruta_archivo)-> list:
                     par = valor.split()
                     
                     if len(par) == 2:
-                        pares = (float(par[0]), float(par[1]))
+                        pares = (float(par[1]), float(par[0]))
                         parejas.append(pares)
     return  parejas
 
-#print(recibir_informacion_yml())
+
+
+print(recibir_informacion_yml("Taller_1\Descargas\Adhesivos Ópticos\Loctite.yml"))
 
 #Falta revisar bien la ruta del archivo
 
