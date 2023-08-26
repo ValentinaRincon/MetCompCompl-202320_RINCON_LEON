@@ -132,3 +132,5 @@ for elemento in lista_archivos:
                 #graficar_indice_vs_longitud(ruta_archivo, carpeta_guardar)
 #carpetas = ["Adhesivos_Ópticos", "Combustible", "Materia Inorgánica", "Materia Orgánica", "Mezclas", "Plásticos_Comerciales", "Vidrio"]
 #leer_carpetas(carpetas)
+
+###PEDIR AYUDA PARA IMPLEMENTAR LO DEL PROFE

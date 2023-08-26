@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 #Punto 2.1
 
 class Mineral:
-    def _init_(self, nombre, dureza, lustre, rompimiento_por_fractura, color, composición, sistema_cristalino, specific_gravity):
+    def __init__(self, nombre, dureza, lustre, rompimiento_por_fractura, color, composición, specific_gravity, sistema_cristalino):
         
         self.nombre = nombre
         self.dureza = dureza
@@ -11,8 +11,8 @@ class Mineral:
         self.rompimiento_por_fractura = rompimiento_por_fractura
         self.color = color
         self.composición = composición
-        self.sistema_cristalino = sistema_cristalino
         self.specific_gravity = specific_gravity
+        self.sistema_cristalino = sistema_cristalino
         
     def leer(self):
         print(f"Nombre: {'self.nombre'}")
@@ -48,5 +48,7 @@ class Mineral:
         if self.rompimiento_por_fractura is True:
             rompimiento = "Fractura"
         print("{0},{1}.{2}").format(self.dureza,rompimiento,self.sistema_cristalino)
+        
+
         
         
