@@ -1,9 +1,8 @@
 import numpy as np
-import json 
 
 from mineral import Mineral
 
-lista= []
+lista = []
 f = open("Taller_1/minerales.txt","r", encoding="utf-8")
 #with open('Taller_1/minerales.txt', 'r') as file:
 file = f.readlines()

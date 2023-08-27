@@ -32,6 +32,8 @@ class ExpansionTermicaMineral(Mineral):
             
             alpha = ExpansionTermicaMineral.alpha(lis_temperatura,lis_volumen)
             ExpansionTermicaMineral.graficar(lis_temperatura,lis_volumen,alpha)
+            
+            return alpha
                 
                 
     def pendiente(lis_temperatura,lis_volumen):
