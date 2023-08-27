@@ -29,14 +29,19 @@ for linea in file[1:17]:
 def contar_silicatos():
     
     contador = 0
+    
+    densidad_promedio = 0
 
     for mineral in lista:
 
         if mineral.silicato():
 
             contador +=1
-
-    return contador
+            densidad_promedio += mineral.densidad()
+            
+    densidad = densidad_promedio/contador
+    
+    return contador,densidad
 print(contar_silicatos())
 
 
