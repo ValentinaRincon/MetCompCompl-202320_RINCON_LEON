@@ -116,6 +116,7 @@ for elemento in lista_archivos:
 
 #Punto 1.5
 
+
 ###PENDIENTE: Revisar como hacer el 1.2 si se puede en python o toca con cilos en bash
 ### Preguntar que archivo es para el 1.3
 ###Ver si se puede hacer un ciclo en el 1.4
