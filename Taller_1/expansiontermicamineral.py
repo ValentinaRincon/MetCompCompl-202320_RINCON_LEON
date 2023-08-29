@@ -32,8 +32,6 @@ class ExpansionTermicaMineral(Mineral):
             
             alpha = ExpansionTermicaMineral.alpha(lis_temperatura,lis_volumen)
             ExpansionTermicaMineral.graficar(lis_temperatura,lis_volumen,alpha)
-            
-            return alpha
                 
                 
     def pendiente(lis_temperatura,lis_volumen):
@@ -95,10 +93,7 @@ class ExpansionTermicaMineral(Mineral):
 """
 
                 
-if __name__ == "__main__":
-    archivo_csv = 'Taller_1/graphite_mceligot_2016.csv'
-    
-    objeto = ExpansionTermicaMineral(archivo_csv)
+
     
         
         
