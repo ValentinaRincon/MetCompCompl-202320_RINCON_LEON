@@ -1,5 +1,6 @@
 Punto 1.1: awk -F "," 'NR>1  {print $3}' indices_refraccion.csv > materiales.txt
-Punto 1.2: 
+Punto 1.2:
+cd Taller_1
 input="indices_refraccion.csv"
 while IFS=, read -r categoria _ nombre link; do
     if [ "$categoria" == "Categoria" ]; then
