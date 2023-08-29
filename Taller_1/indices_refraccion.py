@@ -1,7 +1,9 @@
+from unidecode import unidecode
 import yaml
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import csv
 
 #Función auxiliar
 
@@ -40,15 +42,13 @@ def recibir_informacion_yml(archivo_yml)-> list:
                     par = valor.split()
                     
                     if len(par) == 2:
-                        pares = (float(par[1]), float(par[0]))
+                        pares = (float(par[0]), float(par[1]))
                         parejas.append(pares)
     return  parejas
 
 
 
-#print(recibir_informacion_yml("Taller_1\Descargas 1-2\Adhesivos Ópticos\Loctite.yml"))
-
-#Falta revisar bien la ruta del archivo
+#print(recibir_informacion_yml("Taller_1\Descargas\Adhesivos Opticos\Loctite.yml"))
 
 #Punto 1.4
 
@@ -80,7 +80,8 @@ def graficar_indice_vs_longitud(ruta:str):
     plt.scatter(eje_x,eje_y)
     
     #Obtención del título de la categoría
-    categoria = auxiliar_categoria(ruta) #Falta planear esta función auxiliar
+    categoria = auxiliar_categoria(ruta) 
+    
     #Nombre ejes
         
     plt.title("Gráfica de "+str(categoria) +" el n promedio es:" +str(promedio)+"\n" " y su desviación estándar es: " + str(desviación))
@@ -90,13 +91,13 @@ def graficar_indice_vs_longitud(ruta:str):
 #Revisar ciclo que mande a cada imagen de acuerdo a su carpeta
 
     if categoria == "NOA1348":
-        carpeta_guardar = "Taller_1/Descargas 1-2/Adhesivos Ópticos"
+        carpeta_guardar = "Taller_1/Descargas/Adhesivos Ópticos"
         os.makedirs(carpeta_guardar, exist_ok=True)
         ruta_guardar = os.path.join(carpeta_guardar, "NOA1348.png")
         plt.savefig(ruta_guardar)
         
     else:
-        carpeta_guardar = "Taller_1/Descargas 1-2/Plásticos Comerciales"
+        carpeta_guardar = "Taller_1/Descargas/Plásticos Comerciales"
         os.makedirs(carpeta_guardar, exist_ok=True)
         ruta_guardar = os.path.join(carpeta_guardar, "Kapton.png")
         plt.savefig(ruta_guardar)
@@ -104,33 +105,95 @@ def graficar_indice_vs_longitud(ruta:str):
     plt.show()
         
 
+#Descomentar desde lista_archivos hasta el for para ver el punto 1_4
+#lista_archivos = ["Taller_1/Descargas/Plásticos Comerciales/Kapton.yml", "Taller_1/Descargas/Adhesivos Ópticos/NOA1348.yml"]
 
-lista_archivos = ["Taller_1/Descargas 1-2/Plásticos Comerciales/Kapton.yml", "Taller_1/Descargas 1-2/Adhesivos Ópticos/NOA1348.yml"]
 
-
-for elemento in lista_archivos:
+#for elemento in lista_archivos:
     
-    grafica = graficar_indice_vs_longitud(elemento)
+    #grafica = graficar_indice_vs_longitud(elemento)
     
-    print()
+    #print()
 
 #Punto 1.5
 
-###PENDIENTE: Revisar como hacer el 1.2 si se puede en python o toca con cilos en bash
-### Preguntar que archivo es para el 1.3
-###Ver si se puede hacer un ciclo en el 1.4
-### Revisar el 1.5
+def rutas():
+    
+    # Nombre de la carpeta principal
+    carpeta_principal = 'Taller_1/Descargas'
+    
+        # Abre el archivo CSV en modo lectura
+    with open('Taller_1/indices_refraccion.csv', 'r', newline='') as archivo_csv:
+        # Crea un lector CSV
+        lector = csv.reader(archivo_csv, delimiter='\t')  # Ajusta el delimitador según tu archivo CSV
 
-##SEGÚN CHATGPT es así
-#def leer_carpetas(carpetas):
-    #for categoria in categorias:
-        #for archivo in os.listdir(categoria):
-            #if archivo.endswith(".yml"):
-                #ruta_archivo = os.path.join(categoria, archivo)
-                #carpeta_guardar = os.path.join("Resultados", carpeta)
-                #os.makedirs(carpeta_guardar, exist_ok=True)
-                #graficar_indice_vs_longitud(ruta_archivo, carpeta_guardar)
-#carpetas = ["Adhesivos_Ópticos", "Combustible", "Materia Inorgánica", "Materia Orgánica", "Mezclas", "Plásticos_Comerciales", "Vidrio"]
-#leer_carpetas(carpetas)
+        # Inicializa una variable booleana para rastrear si es el primer ciclo
+        primer_ciclo = True
 
-###PEDIR AYUDA PARA IMPLEMENTAR LO DEL PROFE
+        # Itera a través de las filas y descarga los archivos .yml
+        for fila in lector:
+            if primer_ciclo:
+                primer_ciclo = False
+                continue  # Omitir el primer ciclo
+            
+            categoria = fila[0].split(',')[0]
+            material = fila[0].split(',')[2]
+            
+            ruta_guardado = f"{carpeta_principal}/{categoria}/{material}.yml"
+            
+            ruta_decodificada = ruta_guardado.encode('latin-1').decode('utf-8')
+            
+            print(ruta_decodificada)
+            
+            graficar_indice_vs_longitud_todos(ruta_decodificada)
+            
+
+        
+def auxiliar_grupo(ubicacion_archivo):
+
+    cambio = ubicacion_archivo.split("/")
+    grupo = cambio[2]
+        
+    return grupo
+        
+def graficar_indice_vs_longitud_todos(ruta:str):
+    
+    plt.figure()
+    
+    archivo = recibir_informacion_yml(ruta)
+    
+    #Obtener la información de acuerdo con las posiciones del índice o la longitud según corresponda
+    
+    for tupla in archivo:
+        
+        eje_x = [tupla[0] for tupla in archivo]
+        eje_y = [tupla[1] for tupla in archivo]
+        
+    #Cálculo promedio
+        
+    promedio = round(sum(eje_y)/len(eje_y),3)
+    desviación = round(np.std(eje_y),3)
+        
+    #Gráfico de dispersión
+        
+    plt.scatter(eje_x,eje_y)
+    
+    #Obtención del título de la categoría
+    categoria = auxiliar_categoria(ruta)
+    grupo = auxiliar_grupo(ruta)
+    
+    #Nombre ejes
+        
+    plt.title("Gráfica de "+str(categoria) +" el n promedio es:" +str(promedio)+"\n" " y su desviación estándar es: " + str(desviación))
+    plt.xlabel("Longitud de onda")
+    plt.ylabel("Índice de refracción") 
+    
+    carpeta_guardar = "Taller_1/Descargas/"+grupo
+    os.makedirs(carpeta_guardar, exist_ok=True)
+    ruta_guardar = os.path.join(carpeta_guardar, categoria+".png")
+    plt.savefig(ruta_guardar)
+    plt.close()
+    
+if __name__ == "__main__":
+    rutas()
+    
