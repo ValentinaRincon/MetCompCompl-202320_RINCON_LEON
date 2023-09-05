@@ -31,7 +31,8 @@ class ExpansionTermicaMineral(Mineral):
                 lis_volumen = np.append(lis_volumen,volumen)
             
             alpha = ExpansionTermicaMineral.alpha(lis_temperatura,lis_volumen)
-            ExpansionTermicaMineral.graficar(lis_temperatura,lis_volumen,alpha)
+            error = ExpansionTermicaMineral.error(alpha)
+            ExpansionTermicaMineral.graficar(lis_temperatura,lis_volumen,alpha,error)
                 
                 
     def pendiente(lis_temperatura,lis_volumen):
@@ -58,13 +59,18 @@ class ExpansionTermicaMineral(Mineral):
             
         return lis_a
     
-    def graficar(lis_temperatura,lis_volumen,lis_a):
+    def error(a):
+        
+        return np.std(a)/np.sqrt(len(a))
+    
+    def graficar(lis_temperatura,lis_volumen,lis_a,error):
         
         fig,axs = plt.subplots(nrows=1,ncols=2,figsize=(15,4.5))
         
         t = lis_temperatura
         v = lis_volumen
         a = lis_a
+        e = error
         
         
         axs[0].scatter(x=t,y=v)
@@ -76,6 +82,8 @@ class ExpansionTermicaMineral(Mineral):
         axs[1].set_ylabel(r'Coeficiente de expansión térmica, (1/°C)')
         axs[1].set_xlabel('Temperatura (°C)')
         axs[1].set_title('Temperatura vs Coeficiente de expansión térmica')
+        
+        plt.suptitle('Temperatura y Volumen, el error de aplha es '+str(e))
         
         plt.tight_layout()
         plt.show()
