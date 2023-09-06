@@ -103,19 +103,6 @@ def graficar_indice_vs_longitud(ruta:str):
         plt.savefig(ruta_guardar)
     
     plt.show()
-        
-
-#Descomentar desde lista_archivos hasta el for para ver el punto 1_4
-#lista_archivos = ["Taller_1/Descargas/Plásticos Comerciales/Kapton.yml", "Taller_1/Descargas/Adhesivos Ópticos/NOA1348.yml"]
-
-
-#for elemento in lista_archivos:
-    
-    #grafica = graficar_indice_vs_longitud(elemento)
-    
-    #print()
-
-#Punto 1.5
 
 def rutas():
     

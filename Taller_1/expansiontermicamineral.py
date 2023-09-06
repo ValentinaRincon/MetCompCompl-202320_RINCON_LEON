@@ -87,19 +87,6 @@ class ExpansionTermicaMineral(Mineral):
         
         plt.tight_layout()
         plt.show()
-            
-"""
-        
-    def DerivadaCentral(v,t,h):
-    
-        d = 0.
-        
-        if h != 0:
-            d = (v(t+h) - v(t-h))/(2*h)
-    
-        return d
-"""
-
                 
 
     

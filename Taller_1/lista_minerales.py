@@ -21,9 +21,6 @@ for linea in file[1:17]:
     mineral_i = Mineral(nombre,dureza,lustre,rompimiento_por_fractura,color,composicion,specific_gravity,sistema_cristalino)
         
     lista.append(mineral_i)
-    
-#Mineral.leer(lista[1])
-#print(Mineral.densidad(lista[1]))
 
 def contar_silicatos():
     
