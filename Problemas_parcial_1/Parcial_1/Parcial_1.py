@@ -1,8 +1,7 @@
 import numpy as np
-import matplotlib.pyplot as plt 
-
-def funcion(x:int):
-    return ((np.e)**(-x)) - x
+def func(x:int):
+    neg = x*-1
+    return np.exp(neg) - x
     
 x_0 = 0
 x_1 = 1
@@ -21,7 +20,7 @@ def coeficientes(x_0,x_1,x_2,f):
 
     return a,b,c
 
-d = coeficientes(x_0,x_1,x_2,funcion)
+d = coeficientes(x_0,x_1,x_2,func)
 
 def x_3(d):
     
@@ -55,14 +54,14 @@ def met_Newton (f,df,x_3,itmax=100,precision=1e-11):
         x_3 = xn1
         it += 1
         
-    print('Raiz',xn,it)
+    print('Raiz',x_3,it)
     
     if it == itmax:
         return False
     else:
         return x_3
     
-print( met_Newton(funcion,derivada,x_3,itmax=100,precision=1e-11))
+print( met_Newton(func,derivada,x_3,itmax=100,precision=1e-11))
 """
 def todas_las_raices (x, tolerancia=10):
     
