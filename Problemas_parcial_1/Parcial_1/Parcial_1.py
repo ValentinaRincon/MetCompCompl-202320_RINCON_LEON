@@ -8,6 +8,8 @@ x_0 = 0
 x_1 = 1
 x_2 = 0.5
 
+x = np.linspace(0,1,20)
+
 def derivada(f,x,h=1e-6):
     return (f(x+h) - f(x-h))/(2*h)
 
@@ -85,6 +87,25 @@ def met_Newton (f,df,x_3,itmax=100,precision=1e-11):
     else:
         return x_3
     
-r = (met_Newton(func,derivada,x_3,itmax=100,precision=1e-11))
+def raices (x, tolerancia=10):
+    
+    raices = np.array([])
+    
+    for i in x:
+        
+        raiz = met_Newton(func,derivada,i)
+        
+        if raiz is not False:
+            
+            raiz_2 = np.round(raiz,tolerancia)
+            
+            if raiz_2 not in raices:
+                raices = np.append(raices,raiz_2)
+                
+    raices.sort()
+    
+    return raices
+    
+r = (raices(x, tolerancia=10))
 
 print("La raíz de la función dada es {0}".format(r))
