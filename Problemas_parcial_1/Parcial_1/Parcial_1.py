@@ -1,13 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt 
 
-def funcion(x):
-    euler = np.exp(1)
-    return euler**-x - x
-    #return euler^-x - x
-x_1 = 1
-x_2 = 0.5
-
+def funcion(x:int):
+    return ((np.e)**(-x)) - x
+    
 x_0 = 0
 x_1 = 1
 x_2 = 0.5
@@ -40,32 +36,34 @@ def x_3(d):
    
     return x_3
 
-def met_Newton (f,df,xn,itmax=100,precision=1e-11):
+def met_Newton (f,df,x_3,itmax=100,precision=1e-11):
     
-    error = 1. #Valor de tipo float
+    error = np.abs(f(x_3)) #Valor de tipo float
     it = 0 #La iteración inicia en 0
     
     while error > precision and it < itmax:
         
         try:
             
-            xn1 = xn - f(xn)/df(f,xn)
+            xn1 = x_3 - f(x_3)/df(f,x_3)
             #Criterio de parada
-            error = np.abs(f(xn)/df(f,xn))
+            error = np.abs(f(x_3)/df(f,x_3))
             
         except ZeroDivisionError:
             print('División por cero')
             
-        xn = xn1
+        x_3 = xn1
         it += 1
         
-    #print('Raiz',xn,it)
+    print('Raiz',xn,it)
     
     if it == itmax:
         return False
     else:
-        return xn
-
+        return x_3
+    
+print( met_Newton(funcion,derivada,x_3,itmax=100,precision=1e-11))
+"""
 def todas_las_raices (x, tolerancia=10):
     
     raices = np.array([])
@@ -88,3 +86,4 @@ def todas_las_raices (x, tolerancia=10):
 raices = todas_las_raices(x)
             
 print(raices[0],np.sqrt(3/5))
+"""
