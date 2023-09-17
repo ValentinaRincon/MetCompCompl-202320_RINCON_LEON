@@ -1,12 +1,14 @@
 import numpy as np
-import matplotlib.pyplot as plt 
 
-def funcion(x:int):
-    return ((np.e)**(-x)) - x
-    
+def func(x:int):
+    euler = np.exp(1)
+    return euler**(-x) - x
+
 x_0 = 0
 x_1 = 1
 x_2 = 0.5
+
+x = np.linspace(0,1,20)
 
 def derivada(f,x,h=1e-6):
     return (f(x+h) - f(x-h))/(2*h)
@@ -21,7 +23,30 @@ def coeficientes(x_0,x_1,x_2,f):
 
     return a,b,c
 
-d = coeficientes(x_0,x_1,x_2,funcion)
+def biseccion(func,a,b, tolerancia = 1e-7, itmax=100):
+    
+    respuesta = None
+    
+    if func(a) * func(b) >=0:
+        respuesta = "Metodo no valido" 
+              
+    i = 0
+    
+    while (b-a) /2 > tolerancia and i < itmax:
+        c = (a+b) / 2
+        if func(c) == 0:
+            respuesta = c
+        elif func(c) * func(a) > 0:
+            b = c
+        else:
+            a = c
+        i +=1
+    
+    respuesta = (a + b)/2
+    
+    return respuesta   
+
+d = coeficientes(x_0,x_1,x_2,func)
 
 def x_3(d):
     
@@ -55,22 +80,20 @@ def met_Newton (f,df,x_3,itmax=100,precision=1e-11):
         x_3 = xn1
         it += 1
         
-    print('Raiz',xn,it)
+    #print('Raiz',x_3,it)
     
     if it == itmax:
         return False
     else:
         return x_3
     
-print( met_Newton(funcion,derivada,x_3,itmax=100,precision=1e-11))
-"""
-def todas_las_raices (x, tolerancia=10):
+def raices (x, tolerancia=10):
     
     raices = np.array([])
     
     for i in x:
         
-        raiz = met_Newton(funcion,derivada,i)
+        raiz = met_Newton(func,derivada,i)
         
         if raiz is not False:
             
@@ -82,8 +105,7 @@ def todas_las_raices (x, tolerancia=10):
     raices.sort()
     
     return raices
+    
+r = (raices(x, tolerancia=10))
 
-raices = todas_las_raices(x)
-            
-print(raices[0],np.sqrt(3/5))
-"""
+print("La raíz de la función dada es {0}".format(r))
