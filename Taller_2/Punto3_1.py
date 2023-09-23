@@ -89,13 +89,13 @@ def GetWeightsGLag(n):
 
     Roots = GetAllRootsGLag(n)
 
-    D_Laguerre = []
+    Laguerre = []
     
-    for i in range(n+1):
-        D_Laguerre.append(derivadasLaguerre(i,x))
+    for i in range(n+2):
+        Laguerre.append(GetLaguerre(i,x))
     
-    D_poli = sym.lambdify([x],D_Laguerre[n],'numpy')
-    Weights = 2/((1-Roots**2)*D_poli(Roots)**2)
+    poli = sym.lambdify([x],Laguerre[n+1],'numpy')
+    Weights = Roots/(((n+1)**2)*(poli(Roots)**2))
     
     return Weights
     
