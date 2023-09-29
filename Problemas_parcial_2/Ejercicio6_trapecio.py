@@ -35,11 +35,11 @@ class Integrator:
     
     def GetError(self):
         
-        valor_teorico = np.pi*(0.5*np.sqrt(0.5**2-0.01**2))
+        valor_teorico = np.pi*(0.5-np.sqrt(0.5**2-0.01**2))
         
         valor_experimental = self.Integral
         
-        error = (abs(valor_experimental - valor_teorico))/valor_teorico
+        error = ((abs(valor_experimental - valor_teorico))/valor_teorico)*100
         
         return error
         
@@ -50,6 +50,6 @@ y = f(x)
 
 I = Integrator(x,f)
 
-print(I.GetIntegral())
+print("El valor de la integral es: ",I.GetIntegral())
 
-   
+print("El error por medio del método del trapecio es: ",Integrator.GetError(I))
