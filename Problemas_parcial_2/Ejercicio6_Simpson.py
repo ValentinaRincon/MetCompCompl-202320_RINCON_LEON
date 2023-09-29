@@ -1,6 +1,9 @@
 import numpy as np 
 from scipy import integrate
 
+f = lambda x:np.sqrt(0.01**2-x**2)/(0.5+x)
+n = 1000
+x = np.linspace(-0.01,0.01,n+1)
 class Integrator:
     
     def __init__(self,x,f):
@@ -31,20 +34,22 @@ class Simpson(Integrator):
           
         return self.Integral*self.h/3
     
+    def GetDerivative(self):
+        
+        d = (f(self.x + 2*self.h) - 4*f(self.x + self.h) + 6*f(self.x) - 4*f(self.x - self.h) + f(self.x - 2*self.h))/self.h**4
+        
+        return d
+    
     def GetError(self):
         
-        valor_teorico = np.pi*(0.5*np.sqrt(0.5**2-0.01**2))
+        valor_teorico = np.pi*(0.5-np.sqrt((0.5**2)-(0.01**2)))
         
-        valor_experimental = self.Integral*self.h/3
+        valor_experimental = (self.GetIntegral())
         
-        error = (abs(valor_experimental - valor_teorico))/valor_teorico
+        error = ((abs(valor_experimental - valor_teorico))/valor_teorico)*100
         
         return error
-    
-f = lambda x:np.sqrt(0.01**2-x**2)/(0.5+x)
-n = 1000
-x = np.linspace(-0.01,0.01,n+1)
 
-Integrador = Simpson(x,f)
-print("b es",Integrador.GetError())
-print("c es",integrate.simpson(f(x),x))
+I = Simpson(x,f)
+print("El valor de la Integral al calcularlo con el método de Simpson es: ",I.GetIntegral())
+print("El error de este método es: ",I.GetError())
