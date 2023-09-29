@@ -36,7 +36,8 @@ class Integrator:
 x = np.linspace(-0.01,0.01,n)
 y = f(x)
 
-
 I = Integrator(x,f)
 
-print(I.GetIntegral())
+#print(I.GetIntegral())
+
+   
