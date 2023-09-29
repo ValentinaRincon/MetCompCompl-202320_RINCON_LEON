@@ -27,26 +27,19 @@ class Simpson(Integrator):
             if i%2 == 0:
                 self.Integral += 4*self.y[i+1]
             else:
-                self.Integral += 2*self.y[i+1]
+                self.Integral += 2*self.y[i+1] 
           
         return self.Integral*self.h/3
     
-    def GetDerivative(self):
-        
-        d = f(self.x + 2*self.h) - 4*f(self.x + self.h) + 6*f(self.x) - 4*f(self.x - self.h) + f(self.x - 2*self.h)
-        d /= self.h**4
-        
-        
-        return d
-    
     def GetError(self):
         
-        d = self.GetDerivative()
-        max_ = np.max(np.abs(d))
+        valor_teorico = np.pi*(0.5*np.sqrt(0.5**2-0.01**2))
         
-        self.error = (self.x[-1]-self.x[0])*self.h**4*max_/180
+        valor_experimental = self.Integral*self.h/3
         
-        return self.error
+        error = (abs(valor_experimental - valor_teorico))/valor_teorico
+        
+        return error
     
 f = lambda x:np.sqrt(0.01**2-x**2)/(0.5+x)
 n = 1000
