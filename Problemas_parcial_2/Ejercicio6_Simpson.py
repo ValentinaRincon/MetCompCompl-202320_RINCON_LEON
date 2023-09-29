@@ -31,19 +31,25 @@ class Simpson(Integrator):
           
         return self.Integral*self.h/3
     
+    def GetDerivative(self):
+        
+        d = f(self.x + 2*self.h) - 4*f(self.x + self.h) + 6*f(self.x) - 4*f(self.x - self.h) + f(self.x - 2*self.h)
+        d /= self.h**4
+    
+        return d
+    
     def GetError(self):
         
-        valor_teorico = np.pi*(0.5*np.sqrt(0.5**2-0.01**2))
+        d = self.GetDerivative()
+        max_ = np.max(np.abs(d))
         
-        valor_experimental = self.Integral*self.h/3
+        self.error = (self.x[-1]-self.x[0])*self.h**4*max_/180
         
-        error = (abs(valor_experimental - valor_teorico))/valor_teorico
+        return self.error
         
-        return error
-    
 f = lambda x:np.sqrt(0.01**2-x**2)/(0.5+x)
 n = 1000
-x = np.linspace(-0.01,0.01,n+1)
+x = np.linspace(-0.01+0.0001,0.01-0.0001,n+1)
 
 Integrador = Simpson(x,f)
 print("b es",Integrador.GetError())

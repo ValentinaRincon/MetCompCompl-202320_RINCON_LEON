@@ -32,17 +32,6 @@ class Integrator:
         self.Integral *= self.h
         
         return self.Integral
-    
-    def GetError(self):
-        
-        valor_teorico = np.pi*(0.5*np.sqrt(0.5**2-0.01**2))
-        
-        valor_experimental = self.Integral
-        
-        error = (abs(valor_experimental - valor_teorico))/valor_teorico
-        
-        return error
-        
 
 x = np.linspace(-0.01,0.01,n)
 y = f(x)
@@ -51,5 +40,3 @@ y = f(x)
 I = Integrator(x,f)
 
 print(I.GetIntegral())
-
-   
