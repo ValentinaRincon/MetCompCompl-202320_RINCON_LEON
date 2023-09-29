@@ -65,5 +65,7 @@ resultado = round(division * 100,2)
 
 print("El resultado de la fracción de los rayos es {0}%, aproximadamente".format(resultado))
 
-print()
+print("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-")
+
+print("La razón de que el valor obtenido versus el valor de IDEAM Bogotá no concuerden, es porque \nlo que se calculó en este parcial es el porcentaje de rayos UVA, UVB y UVC, en general, de rayos UV que salen del sol. \nPor otra parte, el valor de IDEAM es obtenido a partir de la Tierra en Bogotá. \nLo que sucede es que la existencia de la atmósfera hace que se dispercen los rayos, en donde los rayos UVC son completamente rechazados, \nlos rayos UVB solamente entran un 5 a 10%, por último los UVA ingresan entre un 90 a un 95%  ")
 
