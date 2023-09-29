@@ -5,7 +5,10 @@ import sympy as sym
 raices = [0.41577456, 2.29428036, 6.28994508]
 pesos = [0.71109301, 0.27851773, 0.01038926]
 
+x = sym.Symbol('x', real = True)
+
 n = x-1
+
 
 funcion = lambda x: (np.math.factorial(n))**(n)
 
