@@ -52,4 +52,4 @@ I = Integrator(x,f)
 
 print("El valor de la integral es: ",I.GetIntegral())
 
-print("El error por medio del método del trapecio es: ",Integrator.GetError(I))
+print("El error por medio del método del trapecio es: ",I.GetError())
