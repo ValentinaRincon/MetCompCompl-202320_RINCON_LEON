@@ -30,4 +30,3 @@ for j in range(len(b_b)):
     
 resultado_b = ("Las corrientes I_a, I_b e I_c en el circuito son {0} A".format(x_b))
 
-print(resultado_a,resultado_b)
