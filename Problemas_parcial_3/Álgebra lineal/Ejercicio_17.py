@@ -50,7 +50,7 @@ def NewtonRapshon(Fn,Jn,p,itmax=1000,precision=1e-6):
 p = np.array([0.5, 0.5])
 NewtonRapshon(Fn,Jn,p)
 
-N = 50
+N = 300
 x = np.linspace(-1,1,N)
 y = np.linspace(-1,1,N)
 
@@ -75,3 +75,5 @@ for i in range(N):
             Fractal[i][j] = 255
          
 plt.imshow(Fractal, cmap='coolwarm' ,extent=[-1,1,-1,1])
+plt.show()
+print("Terminado")
