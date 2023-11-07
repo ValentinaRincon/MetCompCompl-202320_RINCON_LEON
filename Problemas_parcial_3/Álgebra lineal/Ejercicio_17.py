@@ -74,9 +74,4 @@ for i in range(N):
         else:
             Fractal[i][j] = 255
          
-plt.pcolormesh(Fractal, cmap='coolwarm' ,extent=[-1,1,-1,1])
-plt.show()
-            
-
-    
-    
+plt.imshow(Fractal, cmap='coolwarm' ,extent=[-1,1,-1,1])
