@@ -77,3 +77,6 @@ for i in range(N):
 plt.imshow(Fractal, cmap='coolwarm' ,extent=[-1,1,-1,1])
 plt.show()
 print("Terminado")
+
+'''Para un computador con procesador Intel(R) Core(TM) i5-9300H CPU @ 2.40GHz, se demora entre 1:30 min - 2:00 min en aparecer
+   el resultado'''
