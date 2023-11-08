@@ -27,8 +27,6 @@ def conjugado (M,b,x_0,precision=0.01):
         print(b_1)
         p_1 = (-r_1 + np.dot(b_1,p))
         p = p_1
-        print('-------')
-        print('--------')
         x = x_1
         k +=1
         
