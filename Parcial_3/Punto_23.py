@@ -30,5 +30,5 @@ def conjugado (M,b,x_0,precision=0.01):
     print('Las iteraciones son {0}'.format(k))   
     print(x_1)   
     return x_1
-p = np.array([0,0,0,0,0])
-conjugado(M,b,p)
+u = np.array([0,0,0,0,0])
+conjugado(M,b,u)
