@@ -12,23 +12,27 @@ b = np.array([1.,2.,3.,4.,5.])
 def conjugado (M,b,x_0,precision=0.01):
     
     x = x_0.copy()
-    u = x.copy()
     k = 0
-    r_0 = np.linalg.norm(np.dot(M,x)-b)
+    r_0 = (np.dot(M,x))-b
     p_0 = -r_0
-    
-    while r_0 >= precision and k < 6:
-        
-        #u[:]=0
-        a = - (np.dot(r_0.T,p_0))/(np.dot(p_0.T,np.dot(M,p_0)))
-        x_1 = x + np.dot(a,p_0)
-        r_1 = np.linalg.norm(np.dot(M,x_1)-b)
-        b_1 = (np.dot(r_1.T,np.dot(M,p_0)))/(np.dot(p_0.T,np.dot(M,p_0)))
-        p_1 = -(r_1 + np.dot(b_1,p_0))
-        p_0 = p_1
+    norma = np.linalg.norm(r_0)
+    p = p_0
+    while norma >= precision and k < 6:
+        m_p = np.dot(M,p)
+        a = - (np.dot(r_0.T,p))/(np.dot(p.T,m_p))
+        x_1 = x + np.dot(a,p)
+        r_1 = np.dot(M,x_1)-b
+        print(r_1)
+        b_1 = (np.dot(r_1.T,m_p))/(np.dot(p.T,m_p))
+        print(b_1)
+        p_1 = (-r_1 + np.dot(b_1,p))
+        p = p_1
+        print('-------')
+        print('--------')
+        x = x_1
         k +=1
         
-    print(x)    
-    return x
-p = np.array([-1.0,2.1,12.,1.,3.])
+    print(x_1)   
+    return x_1
+p = np.array([0,0,0,0,0])
 conjugado(M,b,p)
